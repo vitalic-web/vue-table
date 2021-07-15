@@ -1,32 +1,45 @@
 <template>
   <table>
-    <caption>{{ tableData.name }}</caption>
-    <tr>
-      <th v-for="item in tableData.head" :key="item">
-        <TableHeadItem :item="item"/>
-      </th>
-    </tr>
+    <caption>{{ tableData1.name }}</caption>
+
+    <TableHead
+      :userNameTitle="tableData1.head.name"
+      :dateTitle="tableData1.head.date"
+      :yearTitle="tableData1.head.year"
+    />
+
+    <template v-for="cell in tableData1.data">
+      <TableRow
+        :key="cell.name"
+        :userName="cell.userName"
+        :date="cell.date"
+        :year="cell.year"
+      />
+    </template>
   </table>
 </template>
 
 <script>
-import TableHeadItem from '@/components/TableHeadItem.vue';
-import tableData from '@/utils/tableData';
+import TableHead from '@/components/TableHead.vue';
+import TableRow from '@/components/TableRow.vue';
+import tableData from '@/common/tableData';
+import { addYear } from '@/common/utils';
 
 export default {
   name: 'Table',
   components: {
-    TableHeadItem,
+    TableHead,
+    TableRow,
   },
   data() {
     return {
-      tableData,
+      tableData1: addYear(tableData),
     };
   },
-  // computed: {
-  //   getTableHead() {
-  //     return this.tableData.head;
-  //   },
-  // },
+  computed: {
+    addYear() {
+      return this.tableData.head;
+    },
+  },
 };
 </script>
