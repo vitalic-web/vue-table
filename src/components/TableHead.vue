@@ -1,8 +1,8 @@
 <template>
   <tr>
-    <th>{{userNameTitle}}</th>
-    <th>{{dateTitle}}</th>
-    <th>{{yearTitle}}</th>
+    <th @click="sortName">{{userNameTitle}}</th>
+    <th @click="sortDate">{{dateTitle}}</th>
+    <th @click="sortYear">{{yearTitle}}</th>
   </tr>
 </template>
 
@@ -13,6 +13,9 @@ export default {
     userNameTitle: String,
     dateTitle: String,
     yearTitle: String,
+    sortName: Function,
+    sortDate: Function,
+    sortYear: Function,
   },
 };
 </script>
