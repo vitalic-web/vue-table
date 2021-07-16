@@ -1,8 +1,8 @@
 <template>
   <tr>
-    <th @click="sortName">{{userNameTitle}}</th>
-    <th @click="sortDate">{{dateTitle}}</th>
-    <th @click="sortYear">{{yearTitle}}</th>
+    <th class="table-head" @click="sortName">{{userNameTitle}}</th>
+    <th class="table-head" @click="sortDate">{{dateTitle}}</th>
+    <th class="table-head" @click="sortYear">{{yearTitle}}</th>
   </tr>
 </template>
 
@@ -19,3 +19,14 @@ export default {
   },
 };
 </script>
+
+<style>
+.table-head {
+  border: 1px solid black;
+  padding: 0 10px;
+}
+
+.table-head:hover {
+  cursor: pointer;
+}
+</style>

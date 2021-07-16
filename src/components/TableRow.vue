@@ -1,8 +1,8 @@
 <template>
   <tr>
-    <td>{{userName}}</td>
-    <td>{{date}}</td>
-    <td>{{year}}</td>
+    <td class="table-row">{{userName}}</td>
+    <td class="table-row">{{date}}</td>
+    <td class="table-row">{{year}}</td>
   </tr>
 </template>
 
@@ -16,3 +16,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.table-row {
+  border: 1px solid black;
+}
+</style>

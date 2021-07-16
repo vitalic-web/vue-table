@@ -1,6 +1,6 @@
 <template>
-  <table>
-    <caption>{{ usersData.name }}</caption>
+  <table class="table">
+    <caption class="table__name">{{ usersData.name }}</caption>
 
     <TableHead
       :userNameTitle="usersData.head.name"
@@ -96,3 +96,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.table {
+  font-size: 14px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.table__name {
+  border: 1px solid black;
+  border-bottom: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
