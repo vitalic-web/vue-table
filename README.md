@@ -1,24 +1,11 @@
 # vue-table
 
-## Project setup
+## Описание
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+Таблица с возможностью сортировки данных.
 ```
 
-### Compiles and minifies for production
+### Технологии
 ```
-yarn build
+HTML, CSS, JavaScript, Vue
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
