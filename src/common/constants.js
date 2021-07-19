@@ -2,6 +2,7 @@ const tableNames = {
   name: 'Users info',
   head: {
     userName: 'User Name',
+    phone: 'Phone',
     email: 'Email',
     name: 'Name',
     surname: 'Surname',

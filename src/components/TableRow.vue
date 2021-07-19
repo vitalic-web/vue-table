@@ -1,8 +1,12 @@
 <template>
   <tr>
     <td class="table-row">{{userName}}</td>
-    <td class="table-row">{{date}}</td>
-    <td class="table-row">{{year}}</td>
+    <td class="table-row">{{phone}}</td>
+    <td class="table-row">{{email}}</td>
+    <td class="table-row">{{name}}</td>
+    <td class="table-row">{{surname}}</td>
+    <td class="table-row">{{birthday}}</td>
+    <td class="table-row">{{age}}</td>
   </tr>
 </template>
 
@@ -11,8 +15,12 @@ export default {
   name: 'TableRow',
   props: {
     userName: String,
-    date: String,
-    year: Number,
+    phone: String,
+    email: String,
+    name: String,
+    surname: String,
+    birthday: String,
+    age: Number,
   },
 };
 </script>

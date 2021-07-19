@@ -1,6 +1,7 @@
 <template>
   <tr>
     <th class="table-head" @click="sortName">{{userName}}</th>
+    <th class="table-head" @click="sortName">{{phone}}</th>
     <th class="table-head" @click="sortDate">{{email}}</th>
     <th class="table-head" @click="sortYear">{{name}}</th>
     <th class="table-head" @click="sortName">{{surname}}</th>
@@ -14,6 +15,7 @@ export default {
   name: 'TableHead',
   props: {
     userName: String,
+    phone: String,
     email: String,
     name: String,
     surname: String,

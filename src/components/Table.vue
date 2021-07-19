@@ -4,6 +4,7 @@
 
     <TableHead
       :userName="tableNames.head.userName"
+      :phone="tableNames.head.phone"
       :email="tableNames.head.email"
       :name="tableNames.head.name"
       :surname="tableNames.head.surname"
@@ -14,16 +15,16 @@
       :sortYear="sortYear"
     />
 
-    <template v-for="cell in usersData">
-      <TableRow
-        :key="cell.name"
-        :userName="cell.userName"
-        :date="cell.date"
-        :year="cell.year"
-      />
-    </template>
-
-    <div>{{usersDataTable}}</div>
+    <TableRow v-for="row in usersDataTable"
+      :key="row.name"
+      :userName="row.username"
+      :phone="row.phone"
+      :email="row.email"
+      :name="row.person.name"
+      :surname="row.person.surname"
+      :birthday="row.person.birthday"
+      :age="row.person.age"
+    />
   </table>
 </template>
 
@@ -31,7 +32,6 @@
 import TableHead from '@/components/TableHead.vue';
 import TableRow from '@/components/TableRow.vue';
 import { tableNames } from '@/common/constants';
-// import tableData from '@/common/tableData';
 import { getFullDate } from '@/common/utils';
 
 export default {
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      usersData: this.usersDataTable ? this.usersDataTable : [],
+      // usersData: this.usersDataTable ? this.usersDataTable : [],
       tableNames,
       isNameUp: false,
       isDateUp: false,
