@@ -1,8 +1,11 @@
 <template>
   <tr>
-    <th class="table-head" @click="sortName">{{userNameTitle}}</th>
-    <th class="table-head" @click="sortDate">{{dateTitle}}</th>
-    <th class="table-head" @click="sortYear">{{yearTitle}}</th>
+    <th class="table-head" @click="sortName">{{userName}}</th>
+    <th class="table-head" @click="sortDate">{{email}}</th>
+    <th class="table-head" @click="sortYear">{{name}}</th>
+    <th class="table-head" @click="sortName">{{surname}}</th>
+    <th class="table-head" @click="sortDate">{{birthday}}</th>
+    <th class="table-head" @click="sortYear">{{age}}</th>
   </tr>
 </template>
 
@@ -10,9 +13,12 @@
 export default {
   name: 'TableHead',
   props: {
-    userNameTitle: String,
-    dateTitle: String,
-    yearTitle: String,
+    userName: String,
+    email: String,
+    name: String,
+    surname: String,
+    birthday: String,
+    age: String,
     sortName: Function,
     sortDate: Function,
     sortYear: Function,
