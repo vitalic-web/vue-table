@@ -1,12 +1,12 @@
 <template>
   <tr>
-    <th class="table-head" @click="sortName">{{userName}}</th>
-    <th class="table-head" @click="sortName">{{phone}}</th>
-    <th class="table-head" @click="sortDate">{{email}}</th>
-    <th class="table-head" @click="sortYear">{{name}}</th>
-    <th class="table-head" @click="sortName">{{surname}}</th>
-    <th class="table-head" @click="sortDate">{{birthday}}</th>
-    <th class="table-head" @click="sortYear">{{age}}</th>
+    <th class="table-head" @click="sortData">{{userName}}</th>
+    <th class="table-head" @click="sortData">{{phone}}</th>
+    <th class="table-head" @click="sortData">{{email}}</th>
+    <th class="table-head" @click="sortData">{{name}}</th>
+    <th class="table-head" @click="sortData">{{surname}}</th>
+    <th class="table-head" @click="sortData">{{birthday}}</th>
+    <th class="table-head" @click="sortData">{{age}}</th>
   </tr>
 </template>
 
@@ -21,9 +21,7 @@ export default {
     surname: String,
     birthday: String,
     age: String,
-    sortName: Function,
-    sortDate: Function,
-    sortYear: Function,
+    sortData: Function,
   },
 };
 </script>
