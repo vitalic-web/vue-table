@@ -23,6 +23,7 @@
       :birthday="tableNames.head.birthday"
       :age="tableNames.head.age"
       :sortData="sortData"
+      :isAscending="isAscending"
     />
     <TableRow v-for="row in sortedData"
       :key="row.name"
@@ -35,7 +36,7 @@
       :age="row.person.age"
     />
   </table>
-  <button @click="log">log</button>
+  <p v-if="!filteredData.length">Nothing found. Please enter a valid request.</p>
 </div>
 </template>
 
@@ -70,25 +71,25 @@ export default {
     },
     sortedData() {
       switch (this.currentSortName) {
-        case 'User Name':
+        case 'userName':
           return sortMethods
             .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Phone':
+        case 'phone':
           return sortMethods
             .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Email':
+        case 'email':
           return sortMethods
             .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Name':
+        case 'name':
           return sortMethods
             .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Surname':
+        case 'surname':
           return sortMethods
             .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Age':
+        case 'age':
           return sortMethods
             .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
-        case 'Birthday':
+        case 'birthday':
           return sortMethods.sortDate(this.filteredData, this.isAscending);
         default:
           return this.filteredData;
@@ -97,21 +98,17 @@ export default {
   },
   methods: {
     sortData(evt) {
-      this.currentSortName = evt.target.textContent;
+      console.log(evt.target.textContent);
+      console.log(evt.target.dataset.column);
+      this.currentSortName = evt.target.dataset.column;
+      // this.currentSortName = evt.target.textContent;
       this.isAscending = !this.isAscending;
     },
     getInputValue(evt) {
-      if (evt.target.value) {
-        this.inputValue = evt.target.value;
-      }
+      this.inputValue = evt.target.value;
     },
     clearSearch() {
       this.inputValue = '';
-    },
-    log() {
-      console.log(this.usersDataTable);
-      console.log('sorted', this.sortedData);
-      console.log('currentSortName', this.currentSortName);
     },
   },
 };
