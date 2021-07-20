@@ -7,7 +7,7 @@
 
 <script>
 import Table from '@/components/Table.vue';
-import { addAge } from '@/common/utils';
+import { transformData } from '@/common/utils';
 
 const axios = require('axios');
 
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     fullTableData() {
-      return addAge(this.tableData);
+      return transformData(this.tableData);
     },
   },
   async created() {
