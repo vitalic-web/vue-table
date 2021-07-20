@@ -1,7 +1,14 @@
 <template>
+<div class="table-container">
+  <input
+    class="table__search"
+    type="text"
+    placeholder="Search"
+    :value="inputValue"
+    @input="getInputValue"
+  >
   <table class="table">
     <caption class="table__name">{{tableNames.name}}</caption>
-
     <TableHead
       :userName="tableNames.head.userName"
       :phone="tableNames.head.phone"
@@ -12,7 +19,6 @@
       :age="tableNames.head.age"
       :sortData="sortData"
     />
-
     <TableRow v-for="row in sortedData"
       :key="row.name"
       :userName="row.username"
@@ -24,6 +30,8 @@
       :age="row.person.age"
     />
   </table>
+  <button @click="log">log</button>
+</div>
 </template>
 
 <script>
@@ -45,7 +53,8 @@ export default {
     return {
       tableNames,
       isAscending: true,
-      currentSortName: 'Age',
+      currentSortName: 'Base',
+      inputValue: '',
     };
   },
   computed: {
@@ -57,6 +66,8 @@ export default {
         case 'Phone':
           return sortMethods
             .sortNumber(this.usersDataTable, this.isAscending, this.currentSortName);
+        case 'Base':
+          return this.usersDataTable;
         case 'Email':
           return sortMethods
             .sortString(this.usersDataTable, this.isAscending, this.currentSortName);
@@ -81,16 +92,30 @@ export default {
       this.currentSortName = evt.target.textContent;
       this.isAscending = !this.isAscending;
     },
+    getInputValue(evt) {
+      console.log(evt.target.value);
+      this.inputValue = evt.target.value;
+    },
+    log() {
+      console.log(this.usersDataTable);
+    },
   },
 };
 </script>
 
 <style>
+.table-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .table {
+  width: 100%;
   font-size: 14px;
   border-spacing: 0;
   border-collapse: collapse;
-  width: 90%;
 }
 
 .table__name {
@@ -98,5 +123,13 @@ export default {
   border-bottom: none;
   font-size: 18px;
   font-weight: bold;
+}
+
+.table__search {
+  border: 1px solid black;
+  align-self: flex-end;
+  margin: 0 0 16px;
+  height: 20px;
+  width: 164px;
 }
 </style>
