@@ -51,19 +51,19 @@ const collator = new Intl.Collator('en');
 const sortMethods = {
   sortString(data, isStringAsc, sortName) {
     switch (sortName) {
-      case 'User Name':
+      case 'userName':
         if (isStringAsc) {
           return data.sort((a, b) => collator.compare(a.username, b.username));
         } return data.sort((a, b) => collator.compare(b.username, a.username));
-      case 'Email':
+      case 'email':
         if (isStringAsc) {
           return data.sort((a, b) => collator.compare(a.email, b.email));
         } return data.sort((a, b) => collator.compare(b.email, a.email));
-      case 'Name':
+      case 'name':
         if (isStringAsc) {
           return data.sort((a, b) => collator.compare(a.person.name, b.person.name));
         } return data.sort((a, b) => collator.compare(b.person.name, a.person.name));
-      case 'Surname':
+      case 'surname':
         if (isStringAsc) {
           return data.sort((a, b) => collator.compare(a.person.surname, b.person.surname));
         } return data.sort((a, b) => collator.compare(b.person.surname, a.person.surname));
@@ -76,11 +76,11 @@ const sortMethods = {
   },
   sortNumber(data, isNumberAsc, sortName) {
     switch (sortName) {
-      case 'Phone':
+      case 'phone':
         if (isNumberAsc) {
           return data.sort((a, b) => collator.compare(a.phone, b.phone));
         } return data.sort((a, b) => collator.compare(b.phone, a.phone));
-      case 'Age':
+      case 'age':
         if (isNumberAsc) {
           return data.sort((a, b) => collator.compare(a.person.age, b.person.age));
         } return data.sort((a, b) => collator.compare(b.person.age, a.person.age));
