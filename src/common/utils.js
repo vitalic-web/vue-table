@@ -1,3 +1,8 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable prefer-const */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 const getFullDate = (date, isTable) => {
@@ -90,6 +95,22 @@ const sortMethods = {
     if (isDateAsc) {
       return data.sort((a, b) => getDate(a) - getDate(b));
     } return data.sort((a, b) => getDate(b) - getDate(a));
+  },
+  search(data, input) {
+    const newArr = JSON.parse(JSON.stringify(data));
+    return newArr.filter((item) => {
+      for (let key in item) {
+        if (String(item[key]).toLowerCase().includes(input.toLowerCase())) {
+          return String(item[key]).toLowerCase().includes(input.toLowerCase());
+        } if (typeof (item[key]) === 'object') {
+          for (let key2 in item[key]) {
+            if (String(item[key][key2]).toLowerCase().includes(input.toLowerCase())) {
+              return String(item[key][key2]).toLowerCase().includes(input.toLowerCase());
+            }
+          }
+        }
+      }
+    });
   },
 };
 
