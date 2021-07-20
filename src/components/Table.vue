@@ -7,6 +7,11 @@
     :value="inputValue"
     @input="getInputValue"
   >
+  <button
+    class="table__search-clear-btn"
+    type="button"
+    @click="clearSearch"
+  >Clear Search</button>
   <table class="table">
     <caption class="table__name">{{tableNames.name}}</caption>
     <TableHead
@@ -58,32 +63,35 @@ export default {
     };
   },
   computed: {
+    filteredData() {
+      if (!this.inputValue) {
+        return this.usersDataTable;
+      } return sortMethods.search(this.usersDataTable, this.inputValue);
+    },
     sortedData() {
       switch (this.currentSortName) {
         case 'User Name':
           return sortMethods
-            .sortString(this.usersDataTable, this.isAscending, this.currentSortName);
+            .sortString(this.filteredData, this.isAscending, this.currentSortName);
         case 'Phone':
           return sortMethods
-            .sortNumber(this.usersDataTable, this.isAscending, this.currentSortName);
-        case 'Base':
-          return this.usersDataTable;
+            .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
         case 'Email':
           return sortMethods
-            .sortString(this.usersDataTable, this.isAscending, this.currentSortName);
+            .sortString(this.filteredData, this.isAscending, this.currentSortName);
         case 'Name':
           return sortMethods
-            .sortString(this.usersDataTable, this.isAscending, this.currentSortName);
+            .sortString(this.filteredData, this.isAscending, this.currentSortName);
         case 'Surname':
           return sortMethods
-            .sortString(this.usersDataTable, this.isAscending, this.currentSortName);
+            .sortString(this.filteredData, this.isAscending, this.currentSortName);
         case 'Age':
           return sortMethods
-            .sortNumber(this.usersDataTable, this.isAscending, this.currentSortName);
+            .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
         case 'Birthday':
-          return sortMethods.sortDate(this.usersDataTable, this.isAscending);
+          return sortMethods.sortDate(this.filteredData, this.isAscending);
         default:
-          return this.usersDataTable;
+          return this.filteredData;
       }
     },
   },
@@ -93,11 +101,17 @@ export default {
       this.isAscending = !this.isAscending;
     },
     getInputValue(evt) {
-      console.log(evt.target.value);
-      this.inputValue = evt.target.value;
+      if (evt.target.value) {
+        this.inputValue = evt.target.value;
+      }
+    },
+    clearSearch() {
+      this.inputValue = '';
     },
     log() {
       console.log(this.usersDataTable);
+      console.log('sorted', this.sortedData);
+      console.log('currentSortName', this.currentSortName);
     },
   },
 };
@@ -128,8 +142,12 @@ export default {
 .table__search {
   border: 1px solid black;
   align-self: flex-end;
-  margin: 0 0 16px;
   height: 20px;
   width: 164px;
+}
+
+.table__search-clear-btn {
+  align-self: flex-end;
+  margin: 16px 0 16px;
 }
 </style>
