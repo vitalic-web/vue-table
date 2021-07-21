@@ -7,7 +7,7 @@
 
 <script>
 import Table from '@/components/Table.vue';
-import { transformData } from '@/common/utils';
+import transformData from '@/utils/transformData';
 
 const axios = require('axios');
 

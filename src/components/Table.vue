@@ -44,7 +44,8 @@
 import TableHead from '@/components/TableHead.vue';
 import TableRow from '@/components/TableRow.vue';
 import { tableNames } from '@/common/constants';
-import { sortMethods } from '@/common/utils';
+import sortMethods from '@/utils/sortMethods';
+import sortData from '@/utils/sortData';
 
 export default {
   name: 'Table',
@@ -70,38 +71,12 @@ export default {
       } return sortMethods.search(this.usersDataTable, this.inputValue);
     },
     sortedData() {
-      switch (this.currentSortName) {
-        case 'userName':
-          return sortMethods
-            .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'phone':
-          return sortMethods
-            .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
-        case 'email':
-          return sortMethods
-            .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'name':
-          return sortMethods
-            .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'surname':
-          return sortMethods
-            .sortString(this.filteredData, this.isAscending, this.currentSortName);
-        case 'age':
-          return sortMethods
-            .sortNumber(this.filteredData, this.isAscending, this.currentSortName);
-        case 'birthday':
-          return sortMethods.sortDate(this.filteredData, this.isAscending);
-        default:
-          return this.filteredData;
-      }
+      return sortData(this.currentSortName, this.filteredData, this.isAscending);
     },
   },
   methods: {
     sortData(evt) {
-      console.log(evt.target.textContent);
-      console.log(evt.target.dataset.column);
       this.currentSortName = evt.target.dataset.column;
-      // this.currentSortName = evt.target.textContent;
       this.isAscending = !this.isAscending;
     },
     getInputValue(evt) {
