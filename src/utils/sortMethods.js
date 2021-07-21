@@ -1,50 +1,10 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
 /* eslint-disable prefer-const */
 /* eslint-disable guard-for-in */
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /* eslint-disable no-restricted-syntax */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
-const getFullDate = (date, isTable) => {
-  const fullDate = date.split('.');
 
-  if (fullDate[2].length === 2) {
-    fullDate[2] = `19${fullDate[2]}`;
-  }
-
-  if (isTable) {
-    return fullDate.join('.');
-  } return fullDate.reverse().join('-');
-};
-
-const getUserAge = (date) => {
-  const userDate = new Date(getFullDate(date));
-  const currentDate = new Date();
-  let age = currentDate.getFullYear() - userDate.getFullYear();
-  const monthDiff = currentDate.getMonth() - userDate.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < userDate.getDate())) {
-    age--;
-  }
-
-  return age;
-};
-
-const transformData = (usersData) => {
-  const newObj = JSON.parse(JSON.stringify(usersData));
-  // eslint-disable-next-line camelcase
-  const do_not_show_it_in_UI = Symbol('do_not_show_it_in_UI');
-
-  newObj.forEach((item) => {
-    item[do_not_show_it_in_UI] = item.do_not_show_it_in_UI;
-    delete item.do_not_show_it_in_UI;
-    item.person.birthday = getFullDate(item.person.birthday, true);
-    item.person.age = getUserAge(item.person.birthday);
-  });
-  return newObj;
-};
-
-const getDate = (user) => new Date(getFullDate(user.person.birthday));
+import getDate from './getDate';
 
 const collator = new Intl.Collator('en');
 
@@ -114,9 +74,4 @@ const sortMethods = {
   },
 };
 
-export {
-  getFullDate,
-  getUserAge,
-  transformData,
-  sortMethods,
-};
+export default sortMethods;
