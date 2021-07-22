@@ -1,17 +1,20 @@
 <template>
 <div class="table-container">
-  <input
-    class="table__search"
-    type="text"
-    placeholder="Search"
-    :value="inputValue"
-    @input="getInputValue"
-  >
-  <button
-    class="table__search-clear-btn"
-    type="button"
-    @click="clearSearch"
-  >Clear Search</button>
+  <div class="table__search-container">
+    <button
+      v-if="isSorted"
+      class="table__search-clear-btn"
+      type="button"
+      @click="clearSearch"
+    >Clear</button>
+    <input
+      class="table__search"
+      type="text"
+      placeholder="Search"
+      :value="inputValue"
+      @input="getInputValue"
+    >
+  </div>
   <table class="table">
     <caption class="table__name">{{tableNames.name}}</caption>
     <TableHead
@@ -74,12 +77,13 @@ export default {
       } return sortMethods.search(this.usersDataTable, this.inputValue);
     },
     sortedData() {
-      return sortData(this.currentSortName, this.filteredData, this.isAscending);
+      if (this.isSorted) {
+        return sortData(this.currentSortName, this.filteredData, this.isAscending);
+      } return sortData('', this.filteredData, this.isAscending);
     },
   },
   methods: {
     sortData(evt) {
-      console.log(evt.target.dataset.column);
       this.currentSortName = evt.target.dataset.column;
       this.isAscending = !this.isAscending;
       this.isSorted = true;
@@ -89,6 +93,7 @@ export default {
     },
     clearSearch() {
       this.inputValue = '';
+      this.isSorted = false;
     },
   },
 };
@@ -117,15 +122,30 @@ export default {
   font-weight: bold;
 }
 
+.table__search-container {
+  display: flex;
+  width: 100%;
+  margin: 0 0 15px;
+  position: relative;
+  height: 25px;
+}
+
 .table__search {
   border: 1px solid black;
   align-self: flex-end;
   height: 20px;
   width: 164px;
+  position: absolute;
+  right: 0;
 }
 
 .table__search-clear-btn {
-  align-self: flex-end;
-  margin: 16px 0 16px;
+  position: absolute;
+  left: 0;
+  height: 25px;
+}
+
+.table__search-clear-btn:hover {
+  cursor: pointer;
 }
 </style>

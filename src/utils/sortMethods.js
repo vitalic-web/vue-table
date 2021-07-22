@@ -10,51 +10,54 @@ const collator = new Intl.Collator('en');
 
 const sortMethods = {
   sortString(data, isStringAsc, sortName) {
+    const newArr = JSON.parse(JSON.stringify(data));
     switch (sortName) {
       case 'userName':
         if (isStringAsc) {
-          return data.sort((a, b) => collator.compare(a.username, b.username));
-        } return data.sort((a, b) => collator.compare(b.username, a.username));
+          return newArr.sort((a, b) => collator.compare(a.username, b.username));
+        } return newArr.sort((a, b) => collator.compare(b.username, a.username));
       case 'email':
         if (isStringAsc) {
-          return data.sort((a, b) => collator.compare(a.email, b.email));
-        } return data.sort((a, b) => collator.compare(b.email, a.email));
+          return newArr.sort((a, b) => collator.compare(a.email, b.email));
+        } return newArr.sort((a, b) => collator.compare(b.email, a.email));
       case 'name':
         if (isStringAsc) {
-          return data.sort((a, b) => collator.compare(a.person.name, b.person.name));
-        } return data.sort((a, b) => collator.compare(b.person.name, a.person.name));
+          return newArr.sort((a, b) => collator.compare(a.person.name, b.person.name));
+        } return newArr.sort((a, b) => collator.compare(b.person.name, a.person.name));
       case 'surname':
         if (isStringAsc) {
-          return data.sort((a, b) => collator.compare(a.person.surname, b.person.surname));
-        } return data.sort((a, b) => collator.compare(b.person.surname, a.person.surname));
+          return newArr.sort((a, b) => collator.compare(a.person.surname, b.person.surname));
+        } return newArr.sort((a, b) => collator.compare(b.person.surname, a.person.surname));
       default: {
         if (isStringAsc) {
-          return data.sort((a, b) => collator.compare(a.username, b.username));
-        } return data.sort((a, b) => collator.compare(b.username, a.username));
+          return newArr.sort((a, b) => collator.compare(a.username, b.username));
+        } return newArr.sort((a, b) => collator.compare(b.username, a.username));
       }
     }
   },
   sortNumber(data, isNumberAsc, sortName) {
+    const newArr = JSON.parse(JSON.stringify(data));
     switch (sortName) {
       case 'phone':
         if (isNumberAsc) {
-          return data.sort((a, b) => collator.compare(a.phone, b.phone));
-        } return data.sort((a, b) => collator.compare(b.phone, a.phone));
+          return newArr.sort((a, b) => collator.compare(a.phone, b.phone));
+        } return newArr.sort((a, b) => collator.compare(b.phone, a.phone));
       case 'age':
         if (isNumberAsc) {
-          return data.sort((a, b) => collator.compare(a.person.age, b.person.age));
-        } return data.sort((a, b) => collator.compare(b.person.age, a.person.age));
+          return newArr.sort((a, b) => collator.compare(a.person.age, b.person.age));
+        } return newArr.sort((a, b) => collator.compare(b.person.age, a.person.age));
       default: {
         if (isNumberAsc) {
-          return data.sort((a, b) => collator.compare(a.person.age, b.person.age));
-        } return data.sort((a, b) => collator.compare(b.person.age, a.person.age));
+          return newArr.sort((a, b) => collator.compare(a.person.age, b.person.age));
+        } return newArr.sort((a, b) => collator.compare(b.person.age, a.person.age));
       }
     }
   },
   sortDate(data, isDateAsc) {
+    const newArr = JSON.parse(JSON.stringify(data));
     if (isDateAsc) {
-      return data.sort((a, b) => getDate(a) - getDate(b));
-    } return data.sort((a, b) => getDate(b) - getDate(a));
+      return newArr.sort((a, b) => getDate(a) - getDate(b));
+    } return newArr.sort((a, b) => getDate(b) - getDate(a));
   },
   search(data, input) {
     const newArr = JSON.parse(JSON.stringify(data));
