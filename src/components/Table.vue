@@ -24,6 +24,8 @@
       :age="tableNames.head.age"
       :sortData="sortData"
       :isAscending="isAscending"
+      :isSorted="isSorted"
+      :currentSortName="currentSortName"
     />
     <TableRow v-for="row in sortedData"
       :key="row.name"
@@ -60,8 +62,9 @@ export default {
     return {
       tableNames,
       isAscending: true,
-      currentSortName: 'Base',
+      currentSortName: '',
       inputValue: '',
+      isSorted: false,
     };
   },
   computed: {
@@ -76,8 +79,10 @@ export default {
   },
   methods: {
     sortData(evt) {
+      console.log(evt.target.dataset.column);
       this.currentSortName = evt.target.dataset.column;
       this.isAscending = !this.isAscending;
+      this.isSorted = true;
     },
     getInputValue(evt) {
       this.inputValue = evt.target.value;
@@ -95,6 +100,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .table {
